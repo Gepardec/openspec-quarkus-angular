@@ -1,0 +1,147 @@
+{
+  "app": {
+    "animals": "Tiere",
+    "dashboard": "Dashboard",
+    "navigation": "Hauptnavigation",
+    "title": "Zoo-Verwaltung"
+  },
+  "dashboard": {
+    "actions": {
+      "viewProfile": "Profil anzeigen"
+    },
+    "eyebrow": "Willkommen",
+    "error": {
+      "description": "Das Spotlight ist aktuell nicht verf\u00fcgbar.",
+      "title": "Spotlight nicht verf\u00fcgbar"
+    },
+    "fields": {
+      "age": "Alter",
+      "enclosure": "Gehege",
+      "funFact": "Fun Fact",
+      "species": "Art"
+    },
+    "loading": "Spotlight wird geladen",
+    "spotlight": {
+      "subtitle": "Tier im Rampenlicht"
+    },
+    "title": "Dashboard"
+  },
+  "animalList": {
+    "addAnimal": "Tier hinzufügen",
+    "columns": {
+      "name": "Name",
+      "species": "Art"
+    },
+    "empty": {
+      "description": "Sobald Tiere erfasst wurden, erscheinen sie in dieser Liste.",
+      "title": "Keine Tiere registriert"
+    },
+    "eyebrow": "Tierbestand",
+    "loading": "Tiere werden geladen",
+    "title": "Tierliste"
+  },
+  "animalCreate": {
+    "actions": {
+      "cancel": "Abbrechen",
+      "submit": "Tier speichern"
+    },
+    "eyebrow": "Tiererfassung",
+    "fields": {
+      "age": {
+        "label": "Alter",
+        "placeholder": "Optionales Alter in Jahren"
+      },
+      "enclosure": {
+        "label": "Gehege",
+        "placeholder": "Optionaler Gehegename"
+      },
+      "name": {
+        "label": "Name",
+        "placeholder": "Tiername eingeben"
+      },
+      "notes": {
+        "label": "Notizen",
+        "placeholder": "Optionale Hinweise für Pfleger"
+      },
+      "species": {
+        "label": "Art",
+        "placeholder": "Art eingeben"
+      }
+    },
+    "title": "Tier hinzufügen",
+    "validation": {
+      "nameRequired": "Name ist erforderlich.",
+      "speciesRequired": "Art ist erforderlich."
+    }
+  },
+  "animalEdit": {
+    "actions": {
+      "cancel": "Abbrechen",
+      "submit": "Änderungen speichern"
+    },
+    "eyebrow": "Tierprofil",
+    "fields": {
+      "age": {
+        "label": "Alter",
+        "placeholder": "Optionales Alter in Jahren"
+      },
+      "enclosure": {
+        "label": "Gehege",
+        "placeholder": "Optionaler Gehegename"
+      },
+      "name": {
+        "label": "Name",
+        "placeholder": "Tiername eingeben"
+      },
+      "notes": {
+        "label": "Notizen",
+        "placeholder": "Optionale Hinweise für Pfleger"
+      },
+      "species": {
+        "label": "Art",
+        "placeholder": "Art eingeben"
+      }
+    },
+    "loading": "Tier für die Bearbeitung wird geladen",
+    "notFound": {
+      "title": "Tier nicht gefunden",
+      "description": "Für diese ID wurde kein Tier gefunden."
+    },
+    "title": "Tier bearbeiten",
+    "validation": {
+      "nameRequired": "Name ist erforderlich.",
+      "speciesRequired": "Art ist erforderlich."
+    }
+  },
+  "animalProfile": {
+    "actions": {
+      "edit": "Bearbeiten",
+      "delete": "Löschen"
+    },
+    "backToList": "Zurück zur Tierliste",
+    "eyebrow": "Tierprofil",
+    "title": "Tierdetails",
+    "loading": "Tierprofil wird geladen",
+    "fields": {
+      "name": "Name",
+      "species": "Art",
+      "age": "Alter",
+      "enclosure": "Gehege",
+      "notes": "Notizen"
+    },
+    "notFound": {
+      "title": "Tier nicht gefunden",
+      "description": "Für diese ID wurde kein Tier gefunden."
+    },
+    "error": {
+      "title": "Profil konnte nicht geladen werden",
+      "description": "Beim Laden des Tierprofils ist ein Fehler aufgetreten."
+    }
+  },
+  "animalDeleteDialog": {
+    "title": "Tier löschen",
+    "message": "Möchten Sie \"{{name}}\" wirklich löschen?",
+    "confirm": "Löschen",
+    "cancel": "Abbrechen"
+  }
+}

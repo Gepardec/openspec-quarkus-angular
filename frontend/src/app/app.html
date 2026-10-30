@@ -1,0 +1,32 @@
+<mat-toolbar class="app-toolbar">
+  <a class="app-toolbar__brand" routerLink="/dashboard" [attr.aria-label]="'app.title' | transloco">
+    <div class="relative h-16 w-40">
+      <img alt="gepardec Logo" fill ngSrc="/logo.png" priority />
+    </div>
+  </a>
+
+  <nav class="app-toolbar__nav" [attr.aria-label]="'app.navigation' | transloco">
+    <a
+      class="app-toolbar__link"
+      mat-button
+      routerLink="/dashboard"
+      routerLinkActive="app-toolbar__link--active"
+    >
+      <mat-icon aria-hidden="true">dashboard</mat-icon>
+      <span>{{ 'app.dashboard' | transloco }}</span>
+    </a>
+    <a
+      class="app-toolbar__link"
+      mat-button
+      routerLink="/animals"
+      routerLinkActive="app-toolbar__link--active"
+    >
+      <mat-icon aria-hidden="true">pets</mat-icon>
+      <span>{{ 'app.animals' | transloco }}</span>
+    </a>
+  </nav>
+</mat-toolbar>
+
+<main class="app-content">
+  <router-outlet />
+</main>

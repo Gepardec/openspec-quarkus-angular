@@ -1,0 +1,7 @@
+Zoo-Management – Übungs-Repo zum OpenSpec-Workshop
+Copyright 2026 Gepardec IT Services GmbH
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+The skills under .agents/skills/ that are listed in skills-lock.json come from
+third-party repositories and keep the licenses of their sources.

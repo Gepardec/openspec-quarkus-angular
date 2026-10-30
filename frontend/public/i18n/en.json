@@ -1,0 +1,147 @@
+{
+  "app": {
+    "animals": "Animals",
+    "dashboard": "Dashboard",
+    "navigation": "Main navigation",
+    "title": "Zoo Management"
+  },
+  "dashboard": {
+    "actions": {
+      "viewProfile": "View profile"
+    },
+    "eyebrow": "Welcome",
+    "error": {
+      "description": "The spotlight is currently unavailable.",
+      "title": "Spotlight unavailable"
+    },
+    "fields": {
+      "age": "Age",
+      "enclosure": "Enclosure",
+      "funFact": "Fun fact",
+      "species": "Species"
+    },
+    "loading": "Loading spotlight",
+    "spotlight": {
+      "subtitle": "Animal spotlight"
+    },
+    "title": "Dashboard"
+  },
+  "animalList": {
+    "addAnimal": "Add animal",
+    "columns": {
+      "name": "Name",
+      "species": "Species"
+    },
+    "empty": {
+      "description": "Registered animals will appear in this list.",
+      "title": "No animals registered"
+    },
+    "eyebrow": "Animal inventory",
+    "loading": "Loading animals",
+    "title": "Animal list"
+  },
+  "animalCreate": {
+    "actions": {
+      "cancel": "Cancel",
+      "submit": "Save animal"
+    },
+    "eyebrow": "Animal registration",
+    "fields": {
+      "age": {
+        "label": "Age",
+        "placeholder": "Optional age in years"
+      },
+      "enclosure": {
+        "label": "Enclosure",
+        "placeholder": "Optional enclosure name"
+      },
+      "name": {
+        "label": "Name",
+        "placeholder": "Enter animal name"
+      },
+      "notes": {
+        "label": "Notes",
+        "placeholder": "Optional notes for keepers"
+      },
+      "species": {
+        "label": "Species",
+        "placeholder": "Enter species"
+      }
+    },
+    "title": "Add animal",
+    "validation": {
+      "nameRequired": "Name is required.",
+      "speciesRequired": "Species is required."
+    }
+  },
+  "animalEdit": {
+    "actions": {
+      "cancel": "Cancel",
+      "submit": "Save changes"
+    },
+    "eyebrow": "Animal profile",
+    "fields": {
+      "age": {
+        "label": "Age",
+        "placeholder": "Optional age in years"
+      },
+      "enclosure": {
+        "label": "Enclosure",
+        "placeholder": "Optional enclosure name"
+      },
+      "name": {
+        "label": "Name",
+        "placeholder": "Enter animal name"
+      },
+      "notes": {
+        "label": "Notes",
+        "placeholder": "Optional notes for keepers"
+      },
+      "species": {
+        "label": "Species",
+        "placeholder": "Enter species"
+      }
+    },
+    "loading": "Loading animal for editing",
+    "notFound": {
+      "title": "Animal not found",
+      "description": "No animal was found for this ID."
+    },
+    "title": "Edit animal",
+    "validation": {
+      "nameRequired": "Name is required.",
+      "speciesRequired": "Species is required."
+    }
+  },
+  "animalProfile": {
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "backToList": "Back to animal list",
+    "eyebrow": "Animal profile",
+    "title": "Animal details",
+    "loading": "Loading animal profile",
+    "fields": {
+      "name": "Name",
+      "species": "Species",
+      "age": "Age",
+      "enclosure": "Enclosure",
+      "notes": "Notes"
+    },
+    "notFound": {
+      "title": "Animal not found",
+      "description": "No animal was found for this ID."
+    },
+    "error": {
+      "title": "Could not load profile",
+      "description": "An error occurred while loading the animal profile."
+    }
+  },
+  "animalDeleteDialog": {
+    "title": "Delete animal",
+    "message": "Are you sure you want to delete \"{{name}}\"?",
+    "confirm": "Delete",
+    "cancel": "Cancel"
+  }
+}
