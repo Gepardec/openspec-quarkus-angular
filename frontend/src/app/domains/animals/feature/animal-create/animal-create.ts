@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -7,12 +8,14 @@ import { form, FormField, FormRoot, required } from '@angular/forms/signals';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 import { AnimalStore } from '../../data/animal.store';
+import { filterEnclosureNames } from '../../data/filter-enclosure-names';
 import { AnimalCreateDto, initialAnimal } from '../../model/animal-create-dto';
 
 @Component({
   selector: 'app-animal-create',
   imports: [
     FormField,
+    MatAutocompleteModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
@@ -43,4 +46,15 @@ export class AnimalCreateComponent {
       },
     },
   );
+
+  protected readonly filteredEnclosureNames = computed(() =>
+    filterEnclosureNames(
+      this.animalStore.enclosureNames(),
+      this.animalCreateForm.enclosure().value(),
+    ),
+  );
+
+  constructor() {
+    this.animalStore.loadEnclosureNames();
+  }
 }

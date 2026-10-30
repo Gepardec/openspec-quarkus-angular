@@ -2,6 +2,7 @@
   "app": {
     "animals": "Tiere",
     "dashboard": "Dashboard",
+    "enclosures": "Gehege",
     "navigation": "Hauptnavigation",
     "title": "Zoo-Verwaltung"
   },
@@ -143,5 +144,19 @@
     "message": "Möchten Sie \"{{name}}\" wirklich löschen?",
     "confirm": "Löschen",
     "cancel": "Abbrechen"
+  },
+  "enclosureOverview": {
+    "animalCount": "Anzahl Tiere: {{ count }}",
+    "empty": {
+      "description": "Sobald ein Tier einem Gehege zugeordnet ist, erscheint das Gehege in dieser Übersicht.",
+      "title": "Keine belegten Gehege"
+    },
+    "error": {
+      "description": "Beim Laden der Gehege ist ein Fehler aufgetreten.",
+      "title": "Gehege konnten nicht geladen werden"
+    },
+    "eyebrow": "Gehege",
+    "loading": "Gehege werden geladen",
+    "title": "Gehegeübersicht"
   }
 }

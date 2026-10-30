@@ -24,6 +24,7 @@ import {
 import { AnimalService } from './animal.service';
 
 type AnimalProfileState = {
+  enclosureNames: string[];
   selectedAnimalId: number | null;
 };
 
@@ -37,6 +38,7 @@ export const AnimalStore = signalStore(
   withEntities<Animal>(),
   withCallStatus(),
   withState<AnimalProfileState>({
+    enclosureNames: [],
     selectedAnimalId: null,
   }),
   withComputed((store) => ({
@@ -60,6 +62,18 @@ export const AnimalStore = signalStore(
               tapResponse({
                 next: (animals) => patchState(store, setAllEntities(animals), setLoaded()),
                 error: (error) => patchState(store, setError(error)),
+              }),
+            ),
+          ),
+        ),
+      ),
+      loadEnclosureNames: rxMethod<void>(
+        pipe(
+          switchMap(() =>
+            animalService.getEnclosureNames().pipe(
+              tapResponse({
+                next: (enclosureNames) => patchState(store, { enclosureNames }),
+                error: () => patchState(store, { enclosureNames: [] }),
               }),
             ),
           ),

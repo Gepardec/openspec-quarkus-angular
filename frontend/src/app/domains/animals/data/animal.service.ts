@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 import { AnimalCreateDto } from '../model/animal-create-dto';
 import { Animal } from '../model/animal';
@@ -11,6 +11,12 @@ export class AnimalService {
 
   getAnimals(): Observable<Animal[]> {
     return this.http.get<Animal[]>('/api/animals');
+  }
+
+  getEnclosureNames(): Observable<string[]> {
+    return this.http
+      .get<{ name: string }[]>('/api/enclosures')
+      .pipe(map((enclosures) => enclosures.map((enclosure) => enclosure.name)));
   }
 
   createAnimal(data: AnimalCreateDto): Observable<Animal> {
