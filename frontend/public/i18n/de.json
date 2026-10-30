@@ -8,7 +8,7 @@
   },
   "dashboard": {
     "actions": {
-      "viewProfile": "Profil anzeigen"
+      "viewProfile": "Steckbrief anzeigen"
     },
     "eyebrow": "Willkommen",
     "error": {
@@ -60,10 +60,6 @@
         "label": "Name",
         "placeholder": "Tiername eingeben"
       },
-      "notes": {
-        "label": "Notizen",
-        "placeholder": "Optionale Hinweise für Pfleger"
-      },
       "species": {
         "label": "Art",
         "placeholder": "Art eingeben"
@@ -80,7 +76,7 @@
       "cancel": "Abbrechen",
       "submit": "Änderungen speichern"
     },
-    "eyebrow": "Tierprofil",
+    "eyebrow": "Steckbrief",
     "fields": {
       "age": {
         "label": "Alter",
@@ -93,10 +89,6 @@
       "name": {
         "label": "Name",
         "placeholder": "Tiername eingeben"
-      },
-      "notes": {
-        "label": "Notizen",
-        "placeholder": "Optionale Hinweise für Pfleger"
       },
       "species": {
         "label": "Art",
@@ -120,9 +112,9 @@
       "delete": "Löschen"
     },
     "backToList": "Zurück zur Tierliste",
-    "eyebrow": "Tierprofil",
-    "title": "Tierdetails",
-    "loading": "Tierprofil wird geladen",
+    "eyebrow": "Tierbestand",
+    "title": "Steckbrief",
+    "loading": "Steckbrief wird geladen",
     "fields": {
       "name": "Name",
       "species": "Art",
@@ -135,8 +127,8 @@
       "description": "Für diese ID wurde kein Tier gefunden."
     },
     "error": {
-      "title": "Profil konnte nicht geladen werden",
-      "description": "Beim Laden des Tierprofils ist ein Fehler aufgetreten."
+      "title": "Steckbrief konnte nicht geladen werden",
+      "description": "Beim Laden des Steckbriefs ist ein Fehler aufgetreten."
     }
   },
   "animalDeleteDialog": {

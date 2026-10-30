@@ -8,7 +8,7 @@
   },
   "dashboard": {
     "actions": {
-      "viewProfile": "View profile"
+      "viewProfile": "View fact sheet"
     },
     "eyebrow": "Welcome",
     "error": {
@@ -60,10 +60,6 @@
         "label": "Name",
         "placeholder": "Enter animal name"
       },
-      "notes": {
-        "label": "Notes",
-        "placeholder": "Optional notes for keepers"
-      },
       "species": {
         "label": "Species",
         "placeholder": "Enter species"
@@ -80,7 +76,7 @@
       "cancel": "Cancel",
       "submit": "Save changes"
     },
-    "eyebrow": "Animal profile",
+    "eyebrow": "Fact sheet",
     "fields": {
       "age": {
         "label": "Age",
@@ -93,10 +89,6 @@
       "name": {
         "label": "Name",
         "placeholder": "Enter animal name"
-      },
-      "notes": {
-        "label": "Notes",
-        "placeholder": "Optional notes for keepers"
       },
       "species": {
         "label": "Species",
@@ -120,9 +112,9 @@
       "delete": "Delete"
     },
     "backToList": "Back to animal list",
-    "eyebrow": "Animal profile",
-    "title": "Animal details",
-    "loading": "Loading animal profile",
+    "eyebrow": "Animal inventory",
+    "title": "Fact sheet",
+    "loading": "Loading fact sheet",
     "fields": {
       "name": "Name",
       "species": "Species",
@@ -135,8 +127,8 @@
       "description": "No animal was found for this ID."
     },
     "error": {
-      "title": "Could not load profile",
-      "description": "An error occurred while loading the animal profile."
+      "title": "Could not load fact sheet",
+      "description": "An error occurred while loading the fact sheet."
     }
   },
   "animalDeleteDialog": {

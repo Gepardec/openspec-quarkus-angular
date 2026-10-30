@@ -4,5 +4,5 @@ export type Animal = {
   species: string;
   age: number;
   enclosure: string;
-  notes: string;
+  notes?: string;
 };
