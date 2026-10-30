@@ -13,9 +13,15 @@
 - [ ] 2.3 Route `/enclosures` per `loadComponent` in `app.routes.ts` und Eintrag „Gehege“ mit Icon und `routerLinkActive` in der Hauptnavigation ergänzen („Gehegeübersicht in der Hauptnavigation“); manuell verifizieren, dass der Eintrag auf jeder Seite sichtbar ist und zur Gehegeübersicht führt
 - [ ] 2.4 Alle sichtbaren Texte der Gehegeübersicht und des Navigationseintrags in `public/i18n/de.json` und `public/i18n/en.json` hinterlegen; manuell prüfen, dass in beiden Sprachen keine Übersetzungsschlüssel roh angezeigt werden
 
-## 3. Integration
+## 3. Frontend: Gehegevorschläge in den Tierformularen
 
-- [ ] 3.1 `./mvnw test` in `backend`, `ng build` und `ng lint` in `frontend` ohne Fehler ausführen und in `./mvnw quarkus:dev` prüfen, dass `GET /api/enclosures` und die Seite `/enclosures` nach dem Eintragen eines zweiten Tiers in ein bestehendes Gehege dessen Zahl `2` zeigen
+- [ ] 3.1 `AnimalService` um `getEnclosureNames()` (`GET /api/enclosures`, abgebildet auf `name`) und `AnimalStore` um den State `enclosureNames` mit der Methode `loadEnclosureNames` erweitern, ohne Import aus `domain:enclosures`; mit `ng build` und `ng lint` in `frontend` verifizieren
+- [ ] 3.2 Feld Gehege in `animal-create` um `mat-autocomplete` ergänzen, das beim Öffnen die Gehegenamen lädt und per `computed` nach dem eingegebenen Text filtert, ohne Groß-/Kleinschreibung („Formular aus der Tierliste öffnen“); manuell verifizieren, dass bestehende Gehege vorgeschlagen werden, ein gewählter Vorschlag in genau dieser Schreibweise gespeichert wird und ein neu eingetippter Name gespeichert wird
+- [ ] 3.3 Feld Gehege in `animal-edit` ebenso um `mat-autocomplete` ergänzen, vorbelegt mit dem aktuellen Gehege („Formular aus dem Tierprofil öffnen“); manuell verifizieren wie in 3.2 und dass das Formular weiterhin mit den aktuellen Angaben vorbelegt ist
+
+## 4. Integration
+
+- [ ] 4.1 `./mvnw test` in `backend`, `ng build` und `ng lint` in `frontend` ohne Fehler ausführen und in `./mvnw quarkus:dev` prüfen, dass `GET /api/enclosures` und die Seite `/enclosures` nach dem Eintragen eines zweiten Tiers in ein bestehendes Gehege dessen Zahl `2` zeigen, wenn das Gehege über den Vorschlag im Formular gewählt wurde
 
 ## Workflow follow-up
 
