@@ -12,7 +12,7 @@ cp -R exercises/02_setup_openspec/openspec .
 
 ## Ziel
 
-Erkundet das Setup — Changes, Specs und `config.yaml`. Vergleicht `config.yaml` mit eurem Stand aus Übung 1 (`git diff openspec/config.yaml`): Die drei Sprachzeilen aus `init` bleiben, dazu kommen im `context` die Constraints, die OpenSpec jedem Artefakt mitgibt, z. B. welche Tests ein Change braucht. Tech-Stack, Befehle und Code-Konventionen stehen dagegen in `AGENTS.md` – die liest jede Agent-Session ohnehin.
+Erkundet das Setup — Specs, archivierte Changes und `config.yaml`. Vergleicht `config.yaml` mit eurem Stand aus Übung 1 (`git diff openspec/config.yaml`): Die drei Sprachzeilen aus `init` bleiben, dazu kommen im `context` die Constraints, die OpenSpec jedem Artefakt mitgibt, z. B. welche Tests ein Change braucht. Tech-Stack, Befehle und Code-Konventionen stehen dagegen in `AGENTS.md` – die liest jede Agent-Session ohnehin.
 
 <details>
 <summary>Hinweise</summary>
@@ -20,11 +20,11 @@ Erkundet das Setup — Changes, Specs und `config.yaml`. Vergleicht `config.yaml
 ```sh
 openspec list
 openspec list --specs
-openspec show us-06-dashboard
+openspec show animal-profile
 ```
 
 </details>
 
 ## Erfolgskriterium
 
-`openspec list` zeigt `us-06-dashboard` als aktiven Change. `openspec validate --all --strict` meldet keine Fehler.
+`openspec list --specs` zeigt sechs Specs, darunter `dashboard`. `openspec list` zeigt keine aktiven Changes. `openspec validate --all --strict` meldet keine Fehler.

@@ -30,9 +30,13 @@ Das System SHALL in der Tierliste einen Hinweis anzeigen, wenn keine Tiere regis
 - **WHEN** der Zoo-Manager die Tierliste öffnet und keine Tiere registriert sind
 - **THEN** zeigt die Tierliste anstelle einer Tabelle einen Hinweis, dass keine Tiere registriert sind
 
-### Requirement: Tierliste über die Navigation erreichbar
-Das System SHALL in der Navigation der App einen Eintrag anbieten, der zur Tierliste führt.
+### Requirement: Tierliste in der Hauptnavigation
+Das System SHALL in der Hauptnavigation der App einen Eintrag anbieten, der zur Tierliste führt. Die Hauptnavigation MUST die Einträge Dashboard und Tierliste enthalten.
 
 #### Scenario: Tierliste über die Navigation öffnen
-- **WHEN** der Zoo-Manager in der Navigation der App den Eintrag für die Tierliste wählt
+- **WHEN** der Zoo-Manager in der Hauptnavigation der App den Eintrag für die Tierliste wählt
 - **THEN** zeigt die App die Tierliste an
+
+#### Scenario: Hauptnavigation enthält Dashboard und Tierliste
+- **WHEN** der Zoo-Manager eine beliebige Seite der App geöffnet hat
+- **THEN** zeigt die Hauptnavigation die Einträge Dashboard und Tierliste
