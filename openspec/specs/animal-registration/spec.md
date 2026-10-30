@@ -17,11 +17,23 @@ Das System SHALL über `POST /animals` ein neues Tier aus einem JSON-Objekt mit 
 - **THEN** antwortet das System mit Status `400` und legt kein Tier an
 
 ### Requirement: Formular aus der Tierliste öffnen
-Das System SHALL in der Tierliste eine Aktion anbieten, die das Formular zum Erfassen eines neuen Tiers öffnet.
+Das System SHALL in der Tierliste eine Aktion anbieten, die das Formular zum Erfassen eines neuen Tiers öffnet. Das Feld Gehege MUST die Namen der bereits belegten Gehege als Vorschläge anbieten und MUST weiterhin die freie Eingabe eines neuen Gehegenamens erlauben.
 
 #### Scenario: Aktion in der Tierliste wählen
 - **WHEN** der Zoo-Manager in der Tierliste die Aktion zum Hinzufügen eines Tiers wählt
 - **THEN** zeigt die App ein leeres Formular mit den Feldern Name, Art, Alter, Gehege und Notizen
+
+#### Scenario: Bestehende Gehege vorschlagen
+- **WHEN** der Zoo-Manager im Formular das Feld Gehege bearbeitet und Tiere in den Gehegen „Savanne 1“ und „Afrika-Haus“ registriert sind
+- **THEN** schlägt die App unter dem Feld die Gehege vor, deren Name den bisher eingegebenen Text unabhängig von Groß- und Kleinschreibung enthält, bei leerem Feld beide Gehege
+
+#### Scenario: Vorgeschlagenes Gehege übernehmen
+- **WHEN** der Zoo-Manager im Feld Gehege „sav“ eingibt, den Vorschlag „Savanne 1“ wählt und das Formular speichert
+- **THEN** legt das System das Tier mit dem Gehege „Savanne 1“ in genau dieser Schreibweise an
+
+#### Scenario: Neues Gehege eintippen
+- **WHEN** der Zoo-Manager im Feld Gehege einen Namen eingibt, den noch kein Tier als Gehege angibt, keinen Vorschlag wählt und das Formular speichert
+- **THEN** legt das System das Tier mit dem eingegebenen Gehegenamen an
 
 ### Requirement: Neues Tier speichern
 Das System SHALL ein neues Tier mit den im Formular eingegebenen Angaben speichern und danach die Tierliste anzeigen.
