@@ -24,4 +24,4 @@ Lasst euren AI-Assistenten den Change implementieren, prüft das Ergebnis selbst
 
 ## Erfolgskriterium
 
-Alle Tasks sind abgehakt, Tests, Build und Lint sind grün. `openspec list` zeigt keine aktiven Changes. Die geänderten Requirements sind in `openspec/specs/` eingeflossen.
+Alle Tasks sind abgehakt, Tests, Build und Lint sind grün. `openspec list` zeigt keine aktiven Changes. Die geänderten und entfernten Requirements sind in `openspec/specs/` eingeflossen.
