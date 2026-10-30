@@ -2,6 +2,7 @@
   "app": {
     "animals": "Animals",
     "dashboard": "Dashboard",
+    "enclosures": "Enclosures",
     "navigation": "Main navigation",
     "title": "Zoo Management"
   },
@@ -143,5 +144,19 @@
     "message": "Are you sure you want to delete \"{{name}}\"?",
     "confirm": "Delete",
     "cancel": "Cancel"
+  },
+  "enclosureOverview": {
+    "animalCount": "Number of animals: {{ count }}",
+    "empty": {
+      "description": "As soon as an animal is assigned to an enclosure, the enclosure appears in this overview.",
+      "title": "No occupied enclosures"
+    },
+    "error": {
+      "description": "An error occurred while loading the enclosures.",
+      "title": "Enclosures could not be loaded"
+    },
+    "eyebrow": "Enclosures",
+    "loading": "Loading enclosures",
+    "title": "Enclosure overview"
   }
 }

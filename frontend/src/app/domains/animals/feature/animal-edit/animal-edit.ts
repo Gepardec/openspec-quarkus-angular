@@ -1,12 +1,14 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   inject,
   input,
   linkedSignal,
   numberAttribute,
 } from '@angular/core';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -15,6 +17,7 @@ import { RouterLink } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 import { AnimalStore } from '../../data/animal.store';
+import { filterEnclosureNames } from '../../data/filter-enclosure-names';
 import { initialAnimal } from '../../model/animal-create-dto';
 
 @Component({
@@ -22,6 +25,7 @@ import { initialAnimal } from '../../model/animal-create-dto';
   imports: [
     FormField,
     FormRoot,
+    MatAutocompleteModule,
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
@@ -55,7 +59,15 @@ export class AnimalEditComponent {
     },
   );
 
+  protected readonly filteredEnclosureNames = computed(() =>
+    filterEnclosureNames(
+      this.animalStore.enclosureNames(),
+      this.animalEditForm.enclosure().value(),
+    ),
+  );
+
   constructor() {
     this.animalStore.selectAnimalById(this.id);
+    this.animalStore.loadEnclosureNames();
   }
 }

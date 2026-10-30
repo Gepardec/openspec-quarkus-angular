@@ -45,8 +45,14 @@
         <input
           matInput
           [formField]="animalEditForm.enclosure"
+          [matAutocomplete]="enclosureAutocomplete"
           [placeholder]="'animalEdit.fields.enclosure.placeholder' | transloco"
         />
+        <mat-autocomplete #enclosureAutocomplete="matAutocomplete">
+          @for (enclosureName of filteredEnclosureNames(); track enclosureName) {
+            <mat-option [value]="enclosureName">{{ enclosureName }}</mat-option>
+          }
+        </mat-autocomplete>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
