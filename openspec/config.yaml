@@ -1,9 +1,15 @@
 schema: spec-driven
 
+# Project documentation, tech stack and coding conventions live in AGENTS.md.
 context: |
   Language: Deutsch
   All artifacts must be written in Deutsch.
   Keep OpenSpec structural headings and SHALL/MUST keywords in English.
+  Zoo-Management is the reference app of an OpenSpec workshop: keep every change small and easy to reason about.
+  Backend tests are RestAssured tests (@QuarkusTest) only, no unit tests. They validate the HTTP contract and serve as the acceptance criteria of a change, so tasks write them against the spec.
+  No frontend tests: frontend tasks are verified with `ng build`, `ng lint` and a manual check in the running app.
+  Every user-visible string goes through Transloco, in German (default) and English.
+  Specs describe REST endpoints without the `/api` root path, e.g. `GET /animals`.
 
 # Per-artifact rules (optional)
 # Add custom rules for specific artifacts.
