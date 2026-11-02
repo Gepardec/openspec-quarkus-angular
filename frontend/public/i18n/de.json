@@ -119,8 +119,7 @@
       "name": "Name",
       "species": "Art",
       "age": "Alter",
-      "enclosure": "Gehege",
-      "notes": "Notizen"
+      "enclosure": "Gehege"
     },
     "notFound": {
       "title": "Tier nicht gefunden",
