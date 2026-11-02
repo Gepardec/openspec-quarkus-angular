@@ -1,4 +1,4 @@
-import { Component, inject, input, numberAttribute } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, numberAttribute } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -25,6 +25,7 @@ import { AnimalDeleteDialogComponent } from '../animal-delete-dialog/animal-dele
   ],
   templateUrl: './animal-profile.html',
   styleUrl: './animal-profile.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AnimalProfileComponent {
   protected readonly animalStore = inject(AnimalStore);

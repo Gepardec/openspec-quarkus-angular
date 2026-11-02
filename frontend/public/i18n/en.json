@@ -119,8 +119,7 @@
       "name": "Name",
       "species": "Species",
       "age": "Age",
-      "enclosure": "Enclosure",
-      "notes": "Notes"
+      "enclosure": "Enclosure"
     },
     "notFound": {
       "title": "Animal not found",
