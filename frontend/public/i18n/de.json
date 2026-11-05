@@ -71,6 +71,7 @@
     "title": "Tier hinzufügen",
     "validation": {
       "nameRequired": "Name ist erforderlich.",
+      "nameTaken": "Dieser Name ist bereits vergeben.",
       "speciesRequired": "Art ist erforderlich."
     }
   },

@@ -13,7 +13,13 @@
         [placeholder]="'animalCreate.fields.name.placeholder' | transloco"
       />
       @if (animalCreateForm.name().invalid() && animalCreateForm.name().touched()) {
-        <mat-error>{{ 'animalCreate.validation.nameRequired' | transloco }}</mat-error>
+        @for (error of animalCreateForm.name().errors(); track error.kind) {
+          @if (error.kind === 'required') {
+            <mat-error>{{ 'animalCreate.validation.nameRequired' | transloco }}</mat-error>
+          } @else if (error.kind === 'nameTaken') {
+            <mat-error>{{ 'animalCreate.validation.nameTaken' | transloco }}</mat-error>
+          }
+        }
       }
     </mat-form-field>
 

@@ -121,6 +121,70 @@ class AnimalResourceTest {
     }
 
     @Test
+    void createAnimalReturnsConflictWhenNameIsAlreadyTaken() {
+        persistAnimal("Leo", "Lion", 6, "Savanna", "Leads the pride.");
+
+        given()
+                .contentType(ContentType.JSON)
+                .body("""
+                        {
+                          "name": "Leo",
+                          "species": "Tiger"
+                        }
+                        """)
+                .when().post("/api/animals")
+                .then()
+                .statusCode(409);
+
+        given()
+                .when().get("/api/animals")
+                .then()
+                .statusCode(200)
+                .body("size()", is(1));
+    }
+
+    @Test
+    void createAnimalReturnsConflictWhenNameDiffersOnlyInCase() {
+        persistAnimal("Leo", "Lion", 6, "Savanna", "Leads the pride.");
+
+        given()
+                .contentType(ContentType.JSON)
+                .body("""
+                        {
+                          "name": "leo",
+                          "species": "Tiger"
+                        }
+                        """)
+                .when().post("/api/animals")
+                .then()
+                .statusCode(409);
+
+        given()
+                .when().get("/api/animals")
+                .then()
+                .statusCode(200)
+                .body("size()", is(1));
+    }
+
+    @Test
+    void createAnimalReturnsCreatedWhenNameIsStillFree() {
+        persistAnimal("Leo", "Lion", 6, "Savanna", "Leads the pride.");
+
+        given()
+                .contentType(ContentType.JSON)
+                .body("""
+                        {
+                          "name": "Simba",
+                          "species": "Lion"
+                        }
+                        """)
+                .when().post("/api/animals")
+                .then()
+                .statusCode(201)
+                .body("name", is("Simba"));
+    }
+
+    @Test
     void updateAnimalReturnsOkWithUpdatedAnimalWhenAnimalExists() {
         long animalId = persistAnimal("Nora", "Bear", 6, "Forest 2", "Enjoys climbing.");
 

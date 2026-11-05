@@ -38,7 +38,11 @@ export class AnimalCreateComponent {
     {
       submission: {
         action: async (field) => {
-          this.animalStore.create(field().value());
+          const result = await this.animalStore.create(field().value());
+          if (result === 'nameTaken') {
+            return { kind: 'nameTaken', fieldTree: field.name };
+          }
+          return undefined;
         },
       },
     },

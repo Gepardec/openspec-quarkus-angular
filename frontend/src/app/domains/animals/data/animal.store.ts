@@ -10,8 +10,9 @@ import {
 } from '@ngrx/signals';
 import { removeEntity, setAllEntities, upsertEntity, withEntities } from '@ngrx/signals/entities';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { pipe, switchMap, tap } from 'rxjs';
+import { firstValueFrom, pipe, switchMap, tap } from 'rxjs';
 
 import { AnimalCreateDto } from '../model/animal-create-dto';
 import { Animal } from '../model/animal';
@@ -26,6 +27,8 @@ import { AnimalService } from './animal.service';
 type AnimalProfileState = {
   selectedAnimalId: number | null;
 };
+
+export type AnimalCreateResult = 'created' | 'nameTaken' | 'failed';
 
 type AnimalUpdateInput = {
   data: AnimalCreateDto;
@@ -65,22 +68,18 @@ export const AnimalStore = signalStore(
           ),
         ),
       ),
-      create: rxMethod<AnimalCreateDto>(
-        pipe(
-          tap(() => patchState(store, setLoading())),
-          switchMap((data) =>
-            animalService.createAnimal(data).pipe(
-              tapResponse({
-                next: (animal) => {
-                  patchState(store, upsertEntity(animal), setLoaded());
-                  void router.navigateByUrl('/animals');
-                },
-                error: (error) => patchState(store, setError(error)),
-              }),
-            ),
-          ),
-        ),
-      ),
+      async create(data: AnimalCreateDto): Promise<AnimalCreateResult> {
+        patchState(store, setLoading());
+        try {
+          const animal = await firstValueFrom(animalService.createAnimal(data));
+          patchState(store, upsertEntity(animal), setLoaded());
+          void router.navigateByUrl('/animals');
+          return 'created';
+        } catch (error) {
+          patchState(store, setError(error));
+          return error instanceof HttpErrorResponse && error.status === 409 ? 'nameTaken' : 'failed';
+        }
+      },
       update: rxMethod<AnimalUpdateInput>(
         pipe(
           tap(() => patchState(store, setLoading())),
