@@ -18,4 +18,8 @@ public class Animal extends PanacheEntity {
     public String notes;
     @Column(name = "fun_fact")
     public String funFact;
+
+    public static boolean existsByName(String name) {
+        return count("lower(name) = lower(?1)", name) > 0;
+    }
 }
