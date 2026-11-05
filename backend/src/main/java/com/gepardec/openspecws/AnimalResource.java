@@ -43,6 +43,10 @@ public class AnimalResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Transactional
     public Response createAnimal(@Valid Animal animal, @Context UriInfo uriInfo) {
+        if (Animal.existsByName(animal.name)) {
+            return Response.status(Response.Status.CONFLICT).build();
+        }
+
         animal.persist();
         URI location = uriInfo.getAbsolutePathBuilder().path(String.valueOf(animal.id)).build();
 

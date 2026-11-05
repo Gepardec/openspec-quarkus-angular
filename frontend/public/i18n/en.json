@@ -71,6 +71,7 @@
     "title": "Add animal",
     "validation": {
       "nameRequired": "Name is required.",
+      "nameTaken": "This name is already taken.",
       "speciesRequired": "Species is required."
     }
   },
