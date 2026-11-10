@@ -4,4 +4,8 @@ insert into animals (id, name, species, age, enclosure, notes) values(3, 'Nemo',
 insert into animals (id, name, species, age, enclosure, notes) values(4, 'Buddy', 'Pinguin', 6, 'Polarwelt', 'Sehr aktiv während der Fütterung.');
 insert into animals (id, name, species, age, enclosure, notes) values(5, 'Zara', 'Zebra', 5, 'Savanne 2', 'Hält sich meist in der Nähe der Tränke auf.');
 insert into animals (id, name, species, age, enclosure, notes, fun_fact) values(6, 'Blitz', 'Gepard', 4, 'Raubkatzen-Areal', 'Reagiert gut auf Enrichment-Training.', 'Kann in wenigen Sekunden von 0 auf 100 km/h sprinten.');
-alter sequence animals_seq restart with 7;
+insert into animals (id, name, species, age, enclosure, notes) values(7, 'Nala', 'Löwe', 6, 'Savanne 1', 'Liegt am liebsten neben Leo in der Sonne.');
+insert into animals (id, name, species, age, enclosure, notes) values(8, 'Gina', 'Giraffe', 9, 'Savanne 2', 'Frisst am liebsten Akazienblätter.');
+insert into animals (id, name, species, age, enclosure, notes) values(9, 'Frieda', 'Pinguin', 4, 'Polarwelt', 'Schwimmt jeden Morgen die erste Runde.');
+insert into animals (id, name, species, age, enclosure, notes) values(10, 'Kasimir', 'Kakadu', 12, null, 'Neu eingetroffen, noch in der Quarantäne.');
+alter sequence animals_seq restart with 11;
