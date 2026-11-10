@@ -1,16 +1,20 @@
 # animal-editing Specification
 
 ## Purpose
-Ermöglicht Zoo-Manager:innen, die Angaben eines bereits erfassten Tiers zu ändern, wenn sich Name, Art, Alter, Gehege oder Notizen ändern.
+Ermöglicht Zoo-Manager:innen, die Angaben eines bereits erfassten Tiers zu ändern, wenn sich Name, Art, Alter oder Gehege ändern.
 
 ## Requirements
 
 ### Requirement: Tier über die API aktualisieren
-Das System SHALL über `PUT /animals/{id}` die Felder `name`, `species`, `age`, `enclosure` und `notes` des Tiers mit der angegebenen ID durch die Werte aus dem JSON-Body ersetzen. `name` und `species` MUST angegeben und nicht leer sein.
+Das System SHALL über `PUT /animals/{id}` die Felder `name`, `species`, `age` und `enclosure` des Tiers mit der angegebenen ID durch die Werte aus dem JSON-Body ersetzen. `name` und `species` MUST angegeben und nicht leer sein. Ein mitgeschicktes Feld `notes` MUST ignoriert werden.
 
 #### Scenario: Bestehendes Tier aktualisieren
 - **WHEN** ein Client `PUT /animals/{id}` mit der ID eines registrierten Tiers und einem JSON-Objekt aufruft, das `name` und `species` enthält
 - **THEN** antwortet das System mit Status `200` und dem geänderten Tier im Body, und `GET /animals/{id}` liefert danach die neuen Werte
+
+#### Scenario: Mitgeschickte Notizen werden ignoriert
+- **WHEN** ein Client `PUT /animals/{id}` mit der ID eines registrierten Tiers und einem JSON-Objekt aufruft, das `name`, `species` und `notes` enthält
+- **THEN** antwortet das System mit Status `200`, der Body enthält kein Feld `notes`, und `GET /animals/{id}` liefert danach ebenfalls kein Feld `notes`
 
 #### Scenario: Pflichtangabe fehlt
 - **WHEN** ein Client `PUT /animals/{id}` mit einem JSON-Objekt aufruft, in dem `name` oder `species` fehlt oder leer ist
@@ -25,7 +29,7 @@ Das System SHALL im Tierprofil eine Aktion anbieten, die das Formular zum Bearbe
 
 #### Scenario: Bearbeiten im Tierprofil wählen
 - **WHEN** der Zoo-Manager im Tierprofil die Aktion zum Bearbeiten wählt
-- **THEN** zeigt die App ein Formular mit den Feldern Name, Art, Alter, Gehege und Notizen, vorbelegt mit den aktuellen Angaben des Tiers
+- **THEN** zeigt die App ein Formular mit den Feldern Name, Art, Alter und Gehege und ohne Feld Notizen, vorbelegt mit den aktuellen Angaben des Tiers
 
 #### Scenario: Tier existiert nicht
 - **WHEN** der Zoo-Manager das Bearbeitungsformular zu einer ID öffnet, zu der kein Tier registriert ist
