@@ -2,15 +2,15 @@
 
 ## Setup
 
-Auf eurer Schulungs-VM ist alles vorbereitet: Das Repo liegt unter `~/openspec-quarkus-angular` (Branch `main`), die OpenSpec-CLI ist installiert. Prüft die Version (erwartet: 1.14.1) und startet die App:
+Auf eurer Schulungs-VM ist alles vorbereitet: Das Repo liegt unter `~/openspec-workshop` (Branch `main`), die OpenSpec-CLI ist installiert. Prüft die Version (erwartet: 1.14.1) und startet die App:
 
 ```sh
-cd ~/openspec-quarkus-angular
+cd ~/openspec-workshop
 openspec --version
 ```
 
 ```sh
-cd ~/openspec-quarkus-angular/backend
+cd ~/openspec-workshop/backend
 ./mvnw quarkus:dev
 ```
 
