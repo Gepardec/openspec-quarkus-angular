@@ -6,7 +6,7 @@ Euer Change aus Übung 4 und 5 ist geplant und angepasst.
 
 ## Ziel
 
-Lasst euren AI-Assistenten den Change umsetzen. Prüft das Ergebnis selbst – Tests, Build, Lint, die laufende App und den Code. Archiviert den Change danach ohne AI-Assistenten und schaut euch an, was sich in `openspec/specs/` verändert hat.
+Lasst euren AI-Assistenten den Change umsetzen. Prüft das Ergebnis selbst – Tests, Build, Lint, die laufende App und den Code. Tasks, die nur ein Mensch prüfen kann, etwa die Prüfung in der laufenden App, sind eure: Der Assistent lässt sie offen oder hakt sie ab, ohne die App gesehen zu haben. Prüft sie selbst und hakt sie dann in `tasks.md` ab. Archiviert den Change danach ohne AI-Assistenten und schaut euch an, was sich in `openspec/specs/` verändert hat.
 
 <details>
 <summary>Hinweise</summary>
@@ -20,4 +20,4 @@ Lasst euren AI-Assistenten den Change umsetzen. Prüft das Ergebnis selbst – T
 
 ## Erfolgskriterium
 
-Alle Tasks sind abgehakt, Tests, Build und Lint sind grün, die Gehegeübersicht ist in der App erreichbar. Nach dem Archivieren zeigt `openspec list` keine aktiven Changes, die neue Spec liegt in `openspec/specs/`, die geänderte Requirement steht in ihrer bestehenden Spec. `openspec validate --all --strict` meldet keine Fehler.
+Alle Tasks sind abgehakt, die Prüfung in der App von euch selbst. Tests, Build und Lint sind grün, die Gehegeübersicht ist in der App erreichbar. Nach dem Archivieren zeigt `openspec list` keine aktiven Changes, die neue Spec liegt in `openspec/specs/`, die geänderte Requirement steht in ihrer bestehenden Spec. `openspec validate --all --strict` meldet keine Fehler.
