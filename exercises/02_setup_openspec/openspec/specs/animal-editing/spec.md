@@ -31,6 +31,17 @@ Das System SHALL im Tierprofil eine Aktion anbieten, die das Formular zum Bearbe
 - **WHEN** der Zoo-Manager das Bearbeitungsformular zu einer ID öffnet, zu der kein Tier registriert ist
 - **THEN** zeigt die App statt des Formulars einen Hinweis, dass das Tier nicht gefunden wurde
 
+### Requirement: Gehege im Formular ändern
+Das System SHALL im Bearbeitungsformular das Feld Gehege als optionale Texteingabe anbieten, in der der Zoo-Manager den Namen des Geheges frei ändert.
+
+#### Scenario: Gehege ändern
+- **WHEN** der Zoo-Manager im Feld Gehege „Savanne 1“ durch „Savanne 2“ ersetzt und speichert
+- **THEN** speichert das System das Tier mit dem Gehege „Savanne 2“
+
+#### Scenario: Gehege leeren
+- **WHEN** der Zoo-Manager das Feld Gehege leert und speichert
+- **THEN** speichert das System das Tier ohne Gehege
+
 ### Requirement: Änderungen speichern
 Das System SHALL die im Formular geänderten Angaben speichern und danach das Tierprofil mit den geänderten Daten anzeigen.
 
