@@ -18,15 +18,16 @@ Die App läuft unter http://localhost:8080. Lasst sie in diesem Terminal laufen 
 
 ## Ziel
 
-Das Repo ist bereits mit `openspec init` eingerichtet: das `openspec/`-Verzeichnis und die Skills und Slash-Commands für Codex und Claude Code. Damit ihr seht, was `init` in einem Projekt ohne OpenSpec anlegt, entfernt zuerst beides:
+Das Repo kennt OpenSpec noch nicht: Es gibt kein `openspec/`-Verzeichnis und keine OpenSpec-Skills, nur die App, `AGENTS.md` und zwei allgemeine Skills (z. B. `frontend-design`).
+
+Führt `openspec init --language Deutsch` im Repo-Root aus und wählt **Codex** aus – damit arbeitet ihr heute. Schaut euch mit `git status` und `openspec/config.yaml` an, was angelegt wurde.
+
+Committet den Stand, damit ihr in Übung 2 vergleichen könnt:
 
 ```sh
-git rm -rq openspec '.*/skills/openspec-*' .agents/skills/.openspec-target .claude/commands/opsx
+git add -A
+git commit -m "Übung 1: openspec init"
 ```
-
-Die anderen Skills (z. B. `frontend-design`) bleiben erhalten.
-
-Führt danach `openspec init --language Deutsch` im Repo-Root aus und wählt **Codex** aus – damit arbeitet ihr heute. Das Repo war zusätzlich für Claude Code eingerichtet. Schaut euch mit `git status` und `openspec/config.yaml` an, was angelegt wurde – wählt ihr Codex und Claude Code, entsteht exakt der Stand von vorher.
 
 ## Erfolgskriterium
 

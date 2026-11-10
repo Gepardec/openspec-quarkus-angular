@@ -9,7 +9,7 @@ In diesem Repo arbeitet ihr während des Workshops. Es enthält eine kleine Zoo-
 | `backend/` | REST-Backend (Quarkus), liefert auch das Frontend aus |
 | `frontend/` | Web-Oberfläche (Angular) |
 | `exercises/` | die sieben Übungen, je mit eigener README |
-| `openspec/` | Specs und Changes der App |
+| `openspec/` | Specs und Changes der App – entsteht erst in Übung 1 |
 | `AGENTS.md` | Projektwissen für AI-Assistenten: Stack, Befehle, Konventionen |
 
 ## Befehle
@@ -58,8 +58,8 @@ Die Tags zeigen auf den Branch `loesung`, der jede Übung als eigene Commits ent
 
 ## Branches
 
-- `main`: Startzustand für die Übungen
-- `loesung`: Referenzlösung; je ein Commit für propose (Übung 4), update (Übung 5), apply und archive (Übung 6) sowie für den Stand des Kollegen und die Lösung von Übung 7
+- `main`: Startzustand für die Übungen, noch ohne OpenSpec
+- `loesung`: Referenzlösung; je ein Commit für init (Übung 1), das Workshop-Setup (Übung 2), propose (Übung 4), update (Übung 5), apply und archive (Übung 6) sowie für den Stand des Kollegen und die Lösung von Übung 7
 - `quiz`: Stand für das CLI-Quiz im Workshop
 
 ## Lizenz

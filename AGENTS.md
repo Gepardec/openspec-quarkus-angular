@@ -10,7 +10,7 @@ A simple zoo management application for managing animals, enclosures, and staff.
 
 - `backend/` — Quarkus application (Maven)
 - `frontend/` — Angular CLI app, bundled into the Quarkus JAR via Quarkus Quinoa (`quarkus.quinoa.ui-dir=../frontend`)
-- `openspec/` — OpenSpec specs and changes; constraints for OpenSpec artifacts are in `openspec/config.yaml`
+- `openspec/` — OpenSpec specs and changes (not on `main` yet; created in exercise 1 via `openspec init`); constraints for OpenSpec artifacts are in `openspec/config.yaml`
 - `exercises/` — workshop exercises
 
 ## Tech Stack
