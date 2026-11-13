@@ -60,7 +60,7 @@ Die Tags zeigen auf den Branch `loesung`, der jede Übung als eigene Commits ent
 
 - `main`: Startzustand für die Übungen, noch ohne OpenSpec
 - `loesung`: Referenzlösung; je ein Commit für init (Übung 1), das Workshop-Setup (Übung 2), propose (Übung 4), update (Übung 5), apply und archive (Übung 6) sowie für den Stand des Kollegen und die Lösung von Übung 7
-- `quiz`: Stand für das CLI-Quiz im Workshop
+- `quiz`: Stand mit drei aktiven Changes in drei Zuständen, für das CLI-Kapitel im Workshop (der Name stammt von einem früheren Quiz)
 
 ## Lizenz
 

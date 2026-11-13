@@ -1,0 +1,30 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Zoo-App starten",
+      "detail": "Quarkus im Dev-Mode, inklusive Angular (http://localhost:8080)",
+      "type": "shell",
+      "command": "./mvnw quarkus:dev",
+      "options": {
+        "cwd": "${workspaceFolder}/backend"
+      },
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": {
+        "panel": "dedicated",
+        "reveal": "always"
+      }
+    },
+    {
+      "label": "Backend-Tests",
+      "type": "shell",
+      "command": "./mvnw test",
+      "options": {
+        "cwd": "${workspaceFolder}/backend"
+      },
+      "group": "test",
+      "problemMatcher": []
+    }
+  ]
+}
