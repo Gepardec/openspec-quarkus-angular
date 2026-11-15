@@ -26,7 +26,7 @@ ng build                # Frontend bauen
 ng lint                 # Frontend prüfen
 ```
 
-Voraussetzungen, falls ihr nicht auf der Schulungs-VM arbeitet: Java 21 oder neuer, Node.js mit pnpm, die Angular CLI und die OpenSpec-CLI (`npm install -g @fission-ai/openspec@1.14.1` – genau diese Version, mit ihr sind die Übungsstände erzeugt).
+Voraussetzungen, falls ihr nicht auf der Schulungs-VM arbeitet: Java 21 oder neuer, Node.js 22.12 oder neuer mit pnpm, die Angular CLI und die OpenSpec-CLI (`npm install -g @fission-ai/openspec@2.0.0` – genau diese Version, mit ihr sind die Übungsstände erzeugt).
 
 ## Übungen
 

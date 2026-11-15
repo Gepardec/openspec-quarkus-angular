@@ -18,7 +18,7 @@ Lasst die App in diesem Terminal laufen und öffnet für die Übungen ein zweite
 
 </details>
 
-Alle Befehle der Übungen laufen im **Repo-Root**, nicht in `backend/`. Öffnet dafür ein Terminal (`Ctrl + J`) und prüft Verzeichnis und CLI-Version (erwartet: 1.14.1):
+Alle Befehle der Übungen laufen im **Repo-Root**, nicht in `backend/`. Öffnet dafür ein Terminal (`Ctrl + J`) und prüft Verzeichnis und CLI-Version (erwartet: 2.0.0):
 
 ```sh
 cd ~/openspec-workshop
@@ -48,4 +48,4 @@ git commit -m "Übung 1: openspec init"
 
 ## Erfolgskriterium
 
-`openspec/` mit `config.yaml`, `specs/` und `changes/` existiert, ebenso die Skills (und, wo das Tool sie unterstützt, Slash-Commands) für eure AI-Assistenten – erzeugt von eurer CLI-Version. In `config.yaml` steht unter `context`, dass alle Artefakte auf Deutsch geschrieben werden. `openspec/` liegt neben `backend/` und `frontend/`, nicht darin.
+`openspec/` mit `config.yaml`, `specs/` und `changes/` existiert, ebenso die OpenSpec-Skills in `.agents/skills/` – erzeugt von eurer CLI-Version. In `config.yaml` steht unter `context`, dass alle Artefakte auf Deutsch geschrieben werden. `openspec/` liegt neben `backend/` und `frontend/`, nicht darin.
