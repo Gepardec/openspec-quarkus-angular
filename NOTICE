@@ -5,3 +5,10 @@ Licensed under the Apache License, Version 2.0 (see LICENSE).
 
 The skills under .agents/skills/ that are listed in skills-lock.json come from
 third-party repositories and keep the licenses of their sources.
+
+Branch arc42 – zusätzliche Skills:
+- .agents/skills/arc42-section-01 … arc42-section-12, arc42-lint, arc42-review:
+  arc42-toolkit von Marco Siccardi, https://github.com/MSiccDev/arc42-toolkit,
+  MIT-Lizenz (siehe .agents/skills/LICENSE-arc42-toolkit).
+- .agents/skills/domain-modeling: https://github.com/mattpocock/skills, Lizenz der Quelle.
+- .agents/skills/arc42-with-structurizr, arc42-adr, arc42-change-sync: Gepardec.
