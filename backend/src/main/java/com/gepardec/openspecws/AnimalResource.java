@@ -11,6 +11,7 @@ import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.WebApplicationException;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -43,7 +44,11 @@ public class AnimalResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Transactional
     public Response createAnimal(@Valid Animal animal, @Context UriInfo uriInfo) {
-        animal.persist();
+        animal.name = animal.name.trim();
+        if (Animal.existsByName(animal.name, null)) {
+            throw new WebApplicationException(Response.Status.CONFLICT);
+        }
+        animal.persistAndFlush();
         URI location = uriInfo.getAbsolutePathBuilder().path(String.valueOf(animal.id)).build();
 
         return Response.created(location).entity(animal).build();
@@ -60,12 +65,17 @@ public class AnimalResource {
             throw new NotFoundException();
         }
 
-        animal.name = updatedAnimal.name;
+        String name = updatedAnimal.name.trim();
+        if (Animal.existsByName(name, id)) {
+            throw new WebApplicationException(Response.Status.CONFLICT);
+        }
+
+        animal.name = name;
         animal.species = updatedAnimal.species;
         animal.age = updatedAnimal.age;
         animal.enclosure = updatedAnimal.enclosure;
         animal.funFact = updatedAnimal.funFact;
-        animal.persist();
+        Animal.flush();
 
         return Response.ok(animal).build();
     }

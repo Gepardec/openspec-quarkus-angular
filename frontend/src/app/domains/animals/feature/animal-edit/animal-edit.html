@@ -14,7 +14,11 @@
           [placeholder]="'animalEdit.fields.name.placeholder' | transloco"
         />
         @if (animalEditForm.name().invalid() && animalEditForm.name().touched()) {
-          <mat-error>{{ 'animalEdit.validation.nameRequired' | transloco }}</mat-error>
+          @if (animalEditForm.name().errors()[0]?.kind === 'nameTaken') {
+            <mat-error>{{ 'animalEdit.validation.nameTaken' | transloco }}</mat-error>
+          } @else {
+            <mat-error>{{ 'animalEdit.validation.nameRequired' | transloco }}</mat-error>
+          }
         }
       </mat-form-field>
 

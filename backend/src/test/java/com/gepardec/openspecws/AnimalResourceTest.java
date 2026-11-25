@@ -261,6 +261,90 @@ class AnimalResourceTest {
                 .statusCode(404);
     }
 
+    @Test
+    void createAnimalReturnsCreatedWhenNameIsFree() {
+        persistAnimal("Leo", "Löwe", 8, "Savanne 1");
+
+        postAnimal("Nala").then().statusCode(201).body("name", is("Nala"));
+    }
+
+    @Test
+    void createAnimalReturnsConflictWhenNameIsTaken() {
+        persistAnimal("Leo", "Löwe", 8, "Savanne 1");
+
+        postAnimal("Leo").then().statusCode(409);
+
+        given().when().get("/api/animals").then().statusCode(200).body("size()", is(1));
+    }
+
+    @Test
+    void createAnimalTreatsNamesCaseSensitive() {
+        persistAnimal("Leo", "Löwe", 8, "Savanne 1");
+
+        postAnimal("leo").then().statusCode(201).body("name", is("leo"));
+    }
+
+    @Test
+    void createAnimalTrimsName() {
+        postAnimal(" Kira ").then().statusCode(201).body("name", is("Kira"));
+
+        given().when().get("/api/animals").then().statusCode(200).body("[0].name", is("Kira"));
+    }
+
+    @Test
+    void createAnimalReturnsConflictWhenTrimmedNameIsTaken() {
+        persistAnimal("Leo", "Löwe", 8, "Savanne 1");
+
+        postAnimal(" Leo ").then().statusCode(409);
+    }
+
+    @Test
+    void createAnimalReturnsBadRequestWhenNameIsOnlyWhitespace() {
+        postAnimal("   ").then().statusCode(400);
+    }
+
+    @Test
+    void updateAnimalReturnsConflictWhenRenamingToTakenName() {
+        persistAnimal("Leo", "Löwe", 8, "Savanne 1");
+        long zaraId = persistAnimal("Zara", "Zebra", 5, "Savanne 2");
+
+        putAnimal(zaraId, "Leo").then().statusCode(409);
+
+        given().when().get("/api/animals/{id}", zaraId).then().statusCode(200).body("name", is("Zara"));
+    }
+
+    @Test
+    void updateAnimalReturnsOkWhenNameIsUnchanged() {
+        long leoId = persistAnimal("Leo", "Löwe", 8, "Savanne 1");
+
+        putAnimal(leoId, "Leo").then().statusCode(200).body("name", is("Leo"));
+    }
+
+    private Response postAnimal(String name) {
+        return given()
+                .contentType(ContentType.JSON)
+                .body(animalJson(name))
+                .when().post("/api/animals");
+    }
+
+    private Response putAnimal(long id, String name) {
+        return given()
+                .contentType(ContentType.JSON)
+                .body(animalJson(name))
+                .when().put("/api/animals/{id}", id);
+    }
+
+    private static String animalJson(String name) {
+        return """
+                {
+                  "name": "%s",
+                  "species": "Zebra",
+                  "age": 5,
+                  "enclosure": "Savanne 2"
+                }
+                """.formatted(name);
+    }
+
     @Transactional
     long persistAnimal(String name, String species, Integer age, String enclosure) {
         Animal animal = new Animal();

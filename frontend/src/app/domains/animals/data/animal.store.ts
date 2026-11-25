@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { computed, inject } from '@angular/core';
 import { tapResponse } from '@ngrx/operators';
 import {
@@ -24,6 +25,7 @@ import {
 import { AnimalService } from './animal.service';
 
 type AnimalProfileState = {
+  conflictingName: string | null;
   enclosureNames: string[];
   selectedAnimalId: number | null;
 };
@@ -38,6 +40,7 @@ export const AnimalStore = signalStore(
   withEntities<Animal>(),
   withCallStatus(),
   withState<AnimalProfileState>({
+    conflictingName: null,
     enclosureNames: [],
     selectedAnimalId: null,
   }),
@@ -53,7 +56,16 @@ export const AnimalStore = signalStore(
     const animalService = inject(AnimalService);
     const router = inject(Router);
 
+    const handleSaveError = (error: unknown, name: string): void => {
+      if (error instanceof HttpErrorResponse && error.status === 409) {
+        patchState(store, { conflictingName: name.trim() }, setLoaded());
+      } else {
+        patchState(store, setError(error));
+      }
+    };
+
     return {
+      clearNameConflict: (): void => patchState(store, { conflictingName: null }),
       loadAnimals: rxMethod<void>(
         pipe(
           tap(() => patchState(store, setLoading())),
@@ -86,10 +98,10 @@ export const AnimalStore = signalStore(
             animalService.createAnimal(data).pipe(
               tapResponse({
                 next: (animal) => {
-                  patchState(store, upsertEntity(animal), setLoaded());
+                  patchState(store, upsertEntity(animal), { conflictingName: null }, setLoaded());
                   void router.navigateByUrl('/animals');
                 },
-                error: (error) => patchState(store, setError(error)),
+                error: (error) => handleSaveError(error, data.name),
               }),
             ),
           ),
@@ -102,10 +114,10 @@ export const AnimalStore = signalStore(
             animalService.updateAnimal(id, data).pipe(
               tapResponse({
                 next: (animal) => {
-                  patchState(store, upsertEntity(animal), setLoaded());
+                  patchState(store, upsertEntity(animal), { conflictingName: null }, setLoaded());
                   void router.navigate(['/animals', id]);
                 },
-                error: (error) => patchState(store, setError(error)),
+                error: (error) => handleSaveError(error, data.name),
               }),
             ),
           ),

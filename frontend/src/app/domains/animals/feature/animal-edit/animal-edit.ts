@@ -7,7 +7,7 @@ import {
   linkedSignal,
   numberAttribute,
 } from '@angular/core';
-import { form, FormField, FormRoot, required } from '@angular/forms/signals';
+import { form, FormField, FormRoot, required, validate } from '@angular/forms/signals';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -48,6 +48,9 @@ export class AnimalEditComponent {
     this.model,
     (schemaPath) => {
       required(schemaPath.name);
+      validate(schemaPath.name, ({ value }) =>
+        value().trim() === this.animalStore.conflictingName() ? { kind: 'nameTaken' } : undefined,
+      );
       required(schemaPath.species);
     },
     {
@@ -67,6 +70,7 @@ export class AnimalEditComponent {
   );
 
   constructor() {
+    this.animalStore.clearNameConflict();
     this.animalStore.selectAnimalById(this.id);
     this.animalStore.loadEnclosureNames();
   }

@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RouterLink } from '@angular/router';
-import { form, FormField, FormRoot, required } from '@angular/forms/signals';
+import { form, FormField, FormRoot, required, validate } from '@angular/forms/signals';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 import { AnimalStore } from '../../data/animal.store';
@@ -36,6 +36,9 @@ export class AnimalCreateComponent {
     this.model,
     (schemaPath) => {
       required(schemaPath.name);
+      validate(schemaPath.name, ({ value }) =>
+        value().trim() === this.animalStore.conflictingName() ? { kind: 'nameTaken' } : undefined,
+      );
       required(schemaPath.species);
     },
     {
@@ -55,6 +58,7 @@ export class AnimalCreateComponent {
   );
 
   constructor() {
+    this.animalStore.clearNameConflict();
     this.animalStore.loadEnclosureNames();
   }
 }
