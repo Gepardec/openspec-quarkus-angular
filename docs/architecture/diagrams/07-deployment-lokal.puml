@@ -1,0 +1,88 @@
+@startuml
+title <size:24>Deployment View: Zoo-Verwaltung - Lokal (Workshop)</size>\n<size:24>Verteilungssicht: lokaler Betrieb im Workshop.</size>
+
+set separator none
+left to right direction
+skinparam ranksep 20
+skinparam nodesep 5
+hide stereotype
+
+<style>
+  root {
+    BackgroundColor: #ffffff;
+    FontColor: #444444;
+  }
+  // Element,Container
+  .Element-RWxlbWVudCxDb250YWluZXI= {
+    BackgroundColor: #438dd5;
+    LineColor: #2e6295;
+    LineStyle: 0;
+    LineThickness: 2;
+    FontColor: #ffffff;
+    FontSize: 24;
+    HorizontalAlignment: center;
+    Shadowing: 0;
+    MaximumWidth: 450;
+  }
+  // Element,Container,Database
+  .Element-RWxlbWVudCxDb250YWluZXIsRGF0YWJhc2U= {
+    BackgroundColor: #438dd5;
+    LineColor: #2e6295;
+    LineStyle: 0;
+    LineThickness: 2;
+    FontColor: #ffffff;
+    FontSize: 24;
+    HorizontalAlignment: center;
+    Shadowing: 0;
+    MaximumWidth: 450;
+  }
+  // Element,Container,Web
+  .Element-RWxlbWVudCxDb250YWluZXIsV2Vi {
+    BackgroundColor: #438dd5;
+    LineColor: #2e6295;
+    LineStyle: 0;
+    LineThickness: 2;
+    FontColor: #ffffff;
+    FontSize: 24;
+    HorizontalAlignment: center;
+    Shadowing: 0;
+    MaximumWidth: 450;
+  }
+  // Relationship
+  .Relationship-UmVsYXRpb25zaGlw {
+    LineThickness: 2;
+    LineStyle: 10-10;
+    LineColor: #444444;
+    FontColor: #444444;
+    FontSize: 24;
+    MaximumWidth: 200;
+  }
+  // Element,Deployment Node
+  .DeploymentNode-RWxlbWVudCxEZXBsb3ltZW50IE5vZGU= {
+    BackgroundColor: #ffffff;
+    LineColor: #b2b2b2;
+    LineStyle: 0;
+    LineThickness: 2;
+    FontColor: #000000;
+    FontSize: 24;
+    HorizontalAlignment: center;
+    Shadowing: 0;
+  }
+</style>
+
+rectangle "Rechner der Teilnehmenden\n<size:16>[Deployment Node: macOS, Windows oder Linux]</size>" <<DeploymentNode-RWxlbWVudCxEZXBsb3ltZW50IE5vZGU=>> as LokalWorkshop.RechnerderTeilnehmenden {
+  rectangle "Browser\n<size:16>[Deployment Node: Chrome, Firefox, Edge]</size>" <<DeploymentNode-RWxlbWVudCxEZXBsb3ltZW50IE5vZGU=>> as LokalWorkshop.RechnerderTeilnehmenden.Browser {
+    rectangle "==Web-App\n<size:16>[Container: Angular, NgRx Signal Store, Angular Material, Transloco]</size>\n\nSingle-Page-App mit den Domänen animals, enclosures und dashboard. Sheriff erzwingt die Domänengrenzen." <<Element-RWxlbWVudCxDb250YWluZXIsV2Vi>> as LokalWorkshop.RechnerderTeilnehmenden.Browser.WebApp_1
+  }
+
+  rectangle "JVM\n<size:16>[Deployment Node: Java, Quarkus]</size>" <<DeploymentNode-RWxlbWVudCxEZXBsb3ltZW50IE5vZGU=>> as LokalWorkshop.RechnerderTeilnehmenden.JVM {
+    rectangle "==REST-API\n<size:16>[Container: Quarkus, Quarkus REST, Hibernate ORM Panache]</size>\n\nStellt die Fachfunktionen unter /api bereit und liefert die Web-App aus (Quinoa)." <<Element-RWxlbWVudCxDb250YWluZXI=>> as LokalWorkshop.RechnerderTeilnehmenden.JVM.RESTAPI_1
+    database "==Datenbank\n<size:16>[Container: H2]</size>\n\nIn-Memory, Schema bei jedem Start neu (drop-and-create), Startdaten aus import.sql." <<Element-RWxlbWVudCxDb250YWluZXIsRGF0YWJhc2U=>> as LokalWorkshop.RechnerderTeilnehmenden.JVM.Datenbank_1
+  }
+
+}
+
+LokalWorkshop.RechnerderTeilnehmenden.Browser.WebApp_1 --> LokalWorkshop.RechnerderTeilnehmenden.JVM.RESTAPI_1 <<Relationship-UmVsYXRpb25zaGlw>> : "Liest und ändert Daten\n<size:16>[JSON über HTTP, /api]</size>"
+LokalWorkshop.RechnerderTeilnehmenden.JVM.RESTAPI_1 --> LokalWorkshop.RechnerderTeilnehmenden.JVM.Datenbank_1 <<Relationship-UmVsYXRpb25zaGlw>> : "Liest und schreibt\n<size:16>[JDBC]</size>"
+
+@enduml
