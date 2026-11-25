@@ -1,0 +1,138 @@
+@startuml
+title <size:24>Component View: Zoo-Verwaltung - Web-App</size>\n<size:24>Bausteinsicht Ebene 2: Web-App, Domäne animals. Grau: andere Domänen, nur über Router-Links verbunden.</size>
+
+set separator none
+left to right direction
+skinparam ranksep 20
+skinparam nodesep 5
+hide stereotype
+
+<style>
+  root {
+    BackgroundColor: #ffffff;
+    FontColor: #444444;
+  }
+  // Element,Component
+  .Element-RWxlbWVudCxDb21wb25lbnQ= {
+    BackgroundColor: #85bbf0;
+    LineColor: #5d82a8;
+    LineStyle: 0;
+    LineThickness: 2;
+    FontColor: #000000;
+    FontSize: 24;
+    HorizontalAlignment: center;
+    Shadowing: 0;
+    MaximumWidth: 450;
+  }
+  // Element,Component,Andere Domäne
+  .Element-RWxlbWVudCxDb21wb25lbnQsQW5kZXJlIERvbcOkbmU= {
+    BackgroundColor: #e8e8e8;
+    LineColor: #a2a2a2;
+    LineStyle: 0;
+    LineThickness: 2;
+    FontColor: #000000;
+    FontSize: 24;
+    HorizontalAlignment: center;
+    Shadowing: 0;
+    MaximumWidth: 450;
+  }
+  // Element,Person
+  .Element-RWxlbWVudCxQZXJzb24= {
+    BackgroundColor: #08427b;
+    LineColor: #052e56;
+    LineStyle: 0;
+    LineThickness: 2;
+    FontColor: #ffffff;
+    FontSize: 24;
+    HorizontalAlignment: center;
+    Shadowing: 0;
+    MaximumWidth: 450;
+  }
+  // Relationship
+  .Relationship-UmVsYXRpb25zaGlw {
+    LineThickness: 2;
+    LineStyle: 10-10;
+    LineColor: #444444;
+    FontColor: #444444;
+    FontSize: 24;
+    MaximumWidth: 200;
+  }
+  // REST-API
+  .Boundary-UkVTVC1BUEk= {
+    BackgroundColor: #ffffff;
+    LineColor: #2e6295;
+    LineStyle: 0;
+    LineThickness: 2;
+    FontColor: #ffffff;
+    FontSize: 24;
+    HorizontalAlignment: center;
+    Shadowing: 0;
+  }
+  // Web-App
+  .Boundary-V2ViLUFwcA== {
+    BackgroundColor: #ffffff;
+    LineColor: #2e6295;
+    LineStyle: 0;
+    LineThickness: 2;
+    FontColor: #ffffff;
+    FontSize: 24;
+    HorizontalAlignment: center;
+    Shadowing: 0;
+  }
+  // Zoo-Verwaltung
+  .Boundary-Wm9vLVZlcndhbHR1bmc= {
+    BackgroundColor: #ffffff;
+    LineColor: #0b4884;
+    LineStyle: 0;
+    LineThickness: 2;
+    FontColor: #ffffff;
+    FontSize: 24;
+    HorizontalAlignment: center;
+    Shadowing: 0;
+  }
+</style>
+
+person "==Zoo-Manager:in\n<size:16>[Person]</size>\n\nPflegt Tiere, sieht Gehege und Dashboard. Der Code kennt keine Rollen und keine Anmeldung." <<Element-RWxlbWVudCxQZXJzb24=>> as ZooManagerin
+
+rectangle "Zoo-Verwaltung\n<size:16>[Software System]</size>" <<Boundary-Wm9vLVZlcndhbHR1bmc=>> {
+  rectangle "REST-API\n<size:16>[Container: Quarkus, Quarkus REST, Hibernate ORM Panache]</size>" <<Boundary-UkVTVC1BUEk=>> {
+    rectangle "==AnimalResource\n<size:16>[Component: JAX-RS Resource]</size>\n\nCRUD für Tiere unter /api/animals. Validiert per Bean Validation, Logik direkt in der Resource." <<Element-RWxlbWVudCxDb21wb25lbnQ=>> as ZooVerwaltung.RESTAPI.AnimalResource
+    rectangle "==EnclosureResource\n<size:16>[Component: JAX-RS Resource]</size>\n\nGET /api/enclosures: gruppiert Tiere nach ihrem Gehege-Namen. Ein Gehege ist keine eigene Entity." <<Element-RWxlbWVudCxDb21wb25lbnQ=>> as ZooVerwaltung.RESTAPI.EnclosureResource
+  }
+
+  rectangle "Web-App\n<size:16>[Container: Angular, NgRx Signal Store, Angular Material, Transloco]</size>" <<Boundary-V2ViLUFwcA==>> {
+    rectangle "==AnimalService\n<size:16>[Component: Angular Service (HttpClient), animals/data]</size>\n\nKapselt die HTTP-Aufrufe der Domäne animals." <<Element-RWxlbWVudCxDb21wb25lbnQ=>> as ZooVerwaltung.WebApp.AnimalService
+    rectangle "==withCallStatus\n<size:16>[Component: NgRx Signal Store Feature, shared/util]</size>\n\nGemeinsamer Store-Baustein für loading, loaded und error." <<Element-RWxlbWVudCxDb21wb25lbnQ=>> as ZooVerwaltung.WebApp.withCallStatus
+    rectangle "==Domäne enclosures\n<size:16>[Component: Angular, enclosures/*]</size>\n\nGehege-Übersicht mit eigenem Store und Service." <<Element-RWxlbWVudCxDb21wb25lbnQsQW5kZXJlIERvbcOkbmU=>> as ZooVerwaltung.WebApp.Domäneenclosures
+    rectangle "==Domäne dashboard\n<size:16>[Component: Angular, dashboard/*]</size>\n\nDashboard mit Spotlight-Karte, eigener Store und Service." <<Element-RWxlbWVudCxDb21wb25lbnQsQW5kZXJlIERvbcOkbmU=>> as ZooVerwaltung.WebApp.Domänedashboard
+    rectangle "==Tierliste\n<size:16>[Component: Angular Component, animals/feature/animal-list]</size>\n\nListet alle Tiere, Einstieg in Steckbrief und Anlegen." <<Element-RWxlbWVudCxDb21wb25lbnQ=>> as ZooVerwaltung.WebApp.Tierliste
+    rectangle "==Steckbrief\n<size:16>[Component: Angular Component, animals/feature/animal-profile]</size>\n\nZeigt ein Tier, Einstieg in Bearbeiten und Löschen." <<Element-RWxlbWVudCxDb21wb25lbnQ=>> as ZooVerwaltung.WebApp.Steckbrief
+    rectangle "==Tier anlegen\n<size:16>[Component: Angular Component, animals/feature/animal-create]</size>\n\nFormular mit Validierung und Gehege-Autovervollständigung." <<Element-RWxlbWVudCxDb21wb25lbnQ=>> as ZooVerwaltung.WebApp.Tieranlegen
+    rectangle "==Tier bearbeiten\n<size:16>[Component: Angular Component, animals/feature/animal-edit]</size>\n\nFormular zum Ändern eines Tiers." <<Element-RWxlbWVudCxDb21wb25lbnQ=>> as ZooVerwaltung.WebApp.Tierbearbeiten
+    rectangle "==Löschdialog\n<size:16>[Component: Angular Material Dialog, animals/feature/animal-delete-dialog]</size>\n\nBestätigt das Löschen eines Tiers." <<Element-RWxlbWVudCxDb21wb25lbnQ=>> as ZooVerwaltung.WebApp.Löschdialog
+    rectangle "==AnimalStore\n<size:16>[Component: NgRx Signal Store, animals/data]</size>\n\nHält Tiere, Auswahl, Gehege-Namen und Ladezustand. Navigiert nach Anlegen und Bearbeiten." <<Element-RWxlbWVudCxDb21wb25lbnQ=>> as ZooVerwaltung.WebApp.AnimalStore
+  }
+
+}
+
+ZooManagerin --> ZooVerwaltung.WebApp.Tierliste <<Relationship-UmVsYXRpb25zaGlw>> : "Öffnet\n<size:16>[Browser]</size>"
+ZooManagerin --> ZooVerwaltung.WebApp.Tieranlegen <<Relationship-UmVsYXRpb25zaGlw>> : "Erfasst neues Tier\n<size:16>[Browser]</size>"
+ZooManagerin --> ZooVerwaltung.WebApp.Domäneenclosures <<Relationship-UmVsYXRpb25zaGlw>> : "Öffnet\n<size:16>[Browser]</size>"
+ZooManagerin --> ZooVerwaltung.WebApp.Domänedashboard <<Relationship-UmVsYXRpb25zaGlw>> : "Öffnet\n<size:16>[Browser]</size>"
+ZooVerwaltung.WebApp.Tierliste --> ZooVerwaltung.WebApp.Steckbrief <<Relationship-UmVsYXRpb25zaGlw>> : "Navigiert zu\n<size:16>[Router]</size>"
+ZooVerwaltung.WebApp.Tierliste --> ZooVerwaltung.WebApp.Tieranlegen <<Relationship-UmVsYXRpb25zaGlw>> : "Navigiert zu\n<size:16>[Router]</size>"
+ZooVerwaltung.WebApp.Steckbrief --> ZooVerwaltung.WebApp.Tierbearbeiten <<Relationship-UmVsYXRpb25zaGlw>> : "Navigiert zu\n<size:16>[Router]</size>"
+ZooVerwaltung.WebApp.Steckbrief --> ZooVerwaltung.WebApp.Löschdialog <<Relationship-UmVsYXRpb25zaGlw>> : "Öffnet\n<size:16>[MatDialog]</size>"
+ZooVerwaltung.WebApp.Tierliste --> ZooVerwaltung.WebApp.AnimalStore <<Relationship-UmVsYXRpb25zaGlw>> : "Liest Tiere"
+ZooVerwaltung.WebApp.Steckbrief --> ZooVerwaltung.WebApp.AnimalStore <<Relationship-UmVsYXRpb25zaGlw>> : "Wählt Tier, löscht"
+ZooVerwaltung.WebApp.Tieranlegen --> ZooVerwaltung.WebApp.AnimalStore <<Relationship-UmVsYXRpb25zaGlw>> : "Legt an"
+ZooVerwaltung.WebApp.Tierbearbeiten --> ZooVerwaltung.WebApp.AnimalStore <<Relationship-UmVsYXRpb25zaGlw>> : "Ändert"
+ZooVerwaltung.WebApp.AnimalStore --> ZooVerwaltung.WebApp.AnimalService <<Relationship-UmVsYXRpb25zaGlw>> : "Ruft auf\n<size:16>[RxJS]</size>"
+ZooVerwaltung.WebApp.Domäneenclosures --> ZooVerwaltung.WebApp.Steckbrief <<Relationship-UmVsYXRpb25zaGlw>> : "Verlinkt auf den Steckbrief\n<size:16>[Router]</size>"
+ZooVerwaltung.WebApp.Domänedashboard --> ZooVerwaltung.WebApp.Steckbrief <<Relationship-UmVsYXRpb25zaGlw>> : "Verlinkt auf den Steckbrief\n<size:16>[Router]</size>"
+ZooVerwaltung.WebApp.AnimalStore --> ZooVerwaltung.WebApp.withCallStatus <<Relationship-UmVsYXRpb25zaGlw>> : "Nutzt"
+ZooVerwaltung.WebApp.AnimalService --> ZooVerwaltung.RESTAPI.AnimalResource <<Relationship-UmVsYXRpb25zaGlw>> : "GET, POST, PUT, DELETE /api/animals\n<size:16>[JSON über HTTP]</size>"
+ZooVerwaltung.WebApp.AnimalService --> ZooVerwaltung.RESTAPI.EnclosureResource <<Relationship-UmVsYXRpb25zaGlw>> : "Holt Gehege-Namen für die Autovervollständigung, GET /api/enclosures\n<size:16>[JSON über HTTP]</size>"
+ZooVerwaltung.WebApp.Domäneenclosures --> ZooVerwaltung.RESTAPI.EnclosureResource <<Relationship-UmVsYXRpb25zaGlw>> : "GET /api/enclosures\n<size:16>[JSON über HTTP]</size>"
+
+@enduml

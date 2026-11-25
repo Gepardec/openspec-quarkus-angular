@@ -85,9 +85,9 @@ hide stereotype
 person "==Zoo-Manager:in\n<size:16>[Person]</size>\n\nPflegt Tiere, sieht Gehege und Dashboard. Der Code kennt keine Rollen und keine Anmeldung." <<Element-RWxlbWVudCxQZXJzb24=>> as ZooManagerin
 
 rectangle "Zoo-Verwaltung\n<size:16>[Software System]</size>" <<Boundary-Wm9vLVZlcndhbHR1bmc=>> {
-  rectangle "==Web-App\n<size:16>[Container: Angular, NgRx Signal Store, Angular Material, Transloco]</size>\n\nSingle-Page-App mit den Domänen animals, enclosures und dashboard. Sheriff erzwingt die Domänengrenzen." <<Element-RWxlbWVudCxDb250YWluZXIsV2Vi>> as ZooVerwaltung.WebApp
   rectangle "==REST-API\n<size:16>[Container: Quarkus, Quarkus REST, Hibernate ORM Panache]</size>\n\nStellt die Fachfunktionen unter /api bereit und liefert die Web-App aus (Quinoa)." <<Element-RWxlbWVudCxDb250YWluZXI=>> as ZooVerwaltung.RESTAPI
   database "==Datenbank\n<size:16>[Container: H2]</size>\n\nIn-Memory, Schema bei jedem Start neu (drop-and-create), Startdaten aus import.sql." <<Element-RWxlbWVudCxDb250YWluZXIsRGF0YWJhc2U=>> as ZooVerwaltung.Datenbank
+  rectangle "==Web-App\n<size:16>[Container: Angular, NgRx Signal Store, Angular Material, Transloco]</size>\n\nSingle-Page-App mit den Domänen animals, enclosures und dashboard. Sheriff erzwingt die Domänengrenzen." <<Element-RWxlbWVudCxDb250YWluZXIsV2Vi>> as ZooVerwaltung.WebApp
 }
 
 ZooManagerin --> ZooVerwaltung.WebApp <<Relationship-UmVsYXRpb25zaGlw>> : "Verwaltet Tiere, sieht Gehege und Dashboard\n<size:16>[Browser]</size>"

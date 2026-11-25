@@ -4,14 +4,16 @@ Ist-Stand der Zoo-Verwaltung, **nachträglich aus dem Code abgeleitet** (Brownfi
 
 | Sektion | Inhalt |
 |---|---|
+| [1. Einführung und Ziele](sections/01-introduction-and-goals.md) | Aufgabenstellung, Qualitätsziele (offen), Stakeholder |
 | [3. Kontextabgrenzung](sections/03-context-and-scope.md) | C4 System Context |
-| [5. Bausteinsicht](sections/05-building-block-view.md) | C4 Container, Komponenten der REST-API |
+| [5. Bausteinsicht](sections/05-building-block-view.md) | C4 Container, Komponenten der Web-App (Domäne animals) und der REST-API |
+| [6. Laufzeitsicht](sections/06-runtime-view.md) | Tier anlegen (Dynamic View) |
 | [7. Verteilungssicht](sections/07-deployment-view.md) | lokaler Betrieb |
 | [8. Querschnittliche Konzepte](sections/08-crosscutting-concepts.md) | Sheriff, Signal Store, Validierung, i18n, Persistenz, OpenSpec |
 | [9. Architekturentscheidungen](sections/09-architecture-decisions.md) | vier nachträgliche ADRs |
 | [12. Glossar](sections/12-glossary.md) | Verweis auf `GLOSSARY.md` |
 
-Nicht befüllt: 1 (Einführung und Ziele), 2 (Randbedingungen), 4 (Lösungsstrategie), 6 (Laufzeitsicht), 10 (Qualitätsanforderungen), 11 (Risiken).
+Nicht befüllt: 2 (Randbedingungen), 4 (Lösungsstrategie), 10 (Qualitätsanforderungen), 11 (Risiken).
 
 ## Diagramme
 

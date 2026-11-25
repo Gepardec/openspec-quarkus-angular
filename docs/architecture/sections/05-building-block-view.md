@@ -22,11 +22,32 @@ Die REST-Endpunkte sind keine externen Schnittstellen (die Web-App ist der einzi
 
 | ID | Endpunkt | Anbieter | Nutzer |
 |---|---|---|---|
-| API-01 | `GET/POST /api/animals`, `GET/PUT/DELETE /api/animals/{id}` | AnimalResource | Web-App, Domäne animals |
-| API-02 | `GET /api/enclosures` | EnclosureResource | Web-App, Domänen enclosures und animals (Gehege-Namen) |
-| API-03 | `GET /api/dashboard/spotlight` | DashboardResource | Web-App, Domäne dashboard |
+| API-01 | `GET/POST /api/animals`, `GET/PUT/DELETE /api/animals/{id}` | AnimalResource | AnimalService (Domäne animals) |
+| API-02 | `GET /api/enclosures` | EnclosureResource | Domäne enclosures, AnimalService (Gehege-Namen) |
+| API-03 | `GET /api/dashboard/spotlight` | DashboardResource | Domäne dashboard |
 
-## 5.2 Ebene 2: REST-API
+## 5.2 Ebene 2: Web-App, Domäne animals
+
+![Komponenten der Web-App, Domäne animals](../diagrams/05-components-spa-animals.svg)
+
+Quelle: `diagrams/structurizr/workspace.dsl`, View `components-spa-animals`
+
+Die Domäne `animals` ist die fachlich reichste und steht stellvertretend für den Aufbau aller Domänen (`feature` → `data` → `model`, siehe [Sektion 8](08-crosscutting-concepts.md#modulgrenzen-mit-sheriff)).
+
+| Bestandteil | Verantwortung | Ort |
+|---|---|---|
+| Tierliste, Steckbrief (`animal-profile`), Tier anlegen, Tier bearbeiten, Löschdialog | Seiten und Dialog, je eine Route bzw. ein Material-Dialog | `animals/feature/*` |
+| AnimalStore | Zustand der Domäne: Tiere, Auswahl, Gehege-Namen, Ladezustand; navigiert nach Anlegen und Bearbeiten | `animals/data/animal.store.ts` |
+| AnimalService | HTTP-Aufrufe gegen API-01 und API-02 | `animals/data/animal.service.ts` |
+| withCallStatus | gemeinsamer Ladezustand für alle Stores | `shared/util/call-status.feature.ts` |
+
+**Befunde:**
+
+- Die Domäne `animals` holt Gehege-Namen über **API-02** (`/api/enclosures`), nicht über die Domäne `enclosures`. Die Domänengrenze im Frontend bleibt so sauber, die Kopplung liegt in der API.
+- `enclosures` und `dashboard` verlinken per Router auf den Steckbrief. Sie importieren nichts aus `animals`.
+- Das Frontend-Modell `Animal` kennt `funFact` nicht, obwohl die API es liefert. Nur das Dashboard zeigt den Fun Fact.
+
+## 5.3 Ebene 2: REST-API
 
 ![Komponenten der REST-API](../diagrams/05-components-api.svg)
 

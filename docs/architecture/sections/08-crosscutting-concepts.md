@@ -19,7 +19,7 @@ Jede Domäne hat einen eigenen Store in `data/`. Der gemeinsame Baustein `withCa
 
 ## Validierung
 
-Die Pflichtfelder werden doppelt geprüft: im Formular (Angular Forms) und in der API per Bean Validation (`@NotBlank` auf `name` und `species`). Maßgeblich ist die API.
+Die Pflichtfelder werden doppelt geprüft: im Formular (Angular Signal Forms, `required`) und in der API per Bean Validation (`@NotBlank` auf `name` und `species`). Maßgeblich ist die API.
 
 ## Internationalisierung
 
