@@ -18,7 +18,7 @@ Fachlogik steht direkt in den Resources. Datenzugriff erfolgt im Active-Record-S
 
 - Positiv: Wenig Code, jeder Endpunkt ist in einer Methode vollständig lesbar.
 - Positiv: Für OpenSpec-Changes im Workshop überschaubar.
-- Negativ: Wiederverwendung über Resources hinweg fehlt. Regeln wie „Name muss eindeutig sein“ (Change `unique-animal-names`) landen in mehreren Methoden.
+- Negativ: Wiederverwendung über Resources hinweg fehlt. Fachregeln, die mehrere Endpunkte betreffen, müssen in jeder Methode wiederholt werden.
 - Negativ: Fachlogik ist nur über HTTP testbar. Das deckt sich mit der Testvorgabe in `openspec/config.yaml` (nur `@QuarkusTest`).
 
 ## Alternativen
